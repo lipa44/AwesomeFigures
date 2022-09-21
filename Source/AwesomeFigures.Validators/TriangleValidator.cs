@@ -7,7 +7,8 @@ using FluentValidation.Results;
 namespace AwesomeFigures.Validators;
 
 public class TriangleValidator<TPoint>
-    : AbstractValidator<Triangle<TPoint>>, ITriangleValidator<TPoint>
+    : AbstractValidator<Triangle<TPoint>>,
+        ITriangleValidator<TPoint>
     where TPoint : IPoint
 {
     public TriangleValidator()

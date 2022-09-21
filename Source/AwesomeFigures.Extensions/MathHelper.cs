@@ -6,6 +6,8 @@ namespace AwesomeFigures.Extensions;
 public static class MathHelper<TPoint>
     where TPoint : IPoint
 {
+    private const double Epsilon = 0.0001;
+
     public static bool IsTriangleRectangular(Triangle<TPoint> triangle)
     {
         var points = triangle.Points;
@@ -19,6 +21,6 @@ public static class MathHelper<TPoint>
         var hypotenuse = lengths.First();
         var cathetusesSquareSum = lengths.Skip(1).Take(2).Sum(x => Math.Pow(x.length, 2));
 
-        return Math.Abs(Math.Pow(hypotenuse.length, 2) - cathetusesSquareSum) < 0.0001;
+        return Math.Abs(Math.Pow(hypotenuse.length, 2) - cathetusesSquareSum) < Epsilon;
     }
 }

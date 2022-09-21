@@ -5,7 +5,7 @@ namespace AwesomeFigures.Core.Lines;
 public readonly struct Line<TPoint>
     where TPoint : IPoint
 {
-    public Line(TPoint a, TPoint b)
+    internal Line(TPoint a, TPoint b)
     {
         A = a;
         B = b;

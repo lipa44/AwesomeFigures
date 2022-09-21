@@ -4,7 +4,7 @@ using AwesomeFigures.Abstractions.Visitors;
 
 namespace AwesomeFigures.Core.Angular;
 
-// Internal ctor to force using FiguresService
+// Internal ctor to enforce using FiguresService
 public class Triangle<TPoint>
     : IPolygon<TPoint>
     where TPoint : IPoint

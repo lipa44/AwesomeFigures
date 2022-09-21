@@ -11,6 +11,7 @@ namespace AwesomeFigures.UnitTests;
 
 public class FigureInvariantTests
 {
+    // DI was here...
     private readonly IFiguresService<MathPoint> _figuresService = new FiguresService<MathPoint>(
         new TriangleValidator<MathPoint>(),
         new RectangleValidator<MathPoint>(),
@@ -80,9 +81,9 @@ public class FigureInvariantTests
         });
 
         // Act
-        var actual = MathHelper<MathPoint>.IsTriangleRectangular(triangle);
+        var actualResult = MathHelper<MathPoint>.IsTriangleRectangular(triangle);
 
         // Assert
-        actual.Should().Be(expectedResult);
+        actualResult.Should().Be(expectedResult);
     }
 }

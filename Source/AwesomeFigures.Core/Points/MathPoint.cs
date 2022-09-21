@@ -16,11 +16,8 @@ public readonly struct MathPoint : IPoint
     public double DistanceTo(IPoint point) => 
         Math.Sqrt(Math.Pow(X - point.X, 2) + Math.Pow(Y - point.Y, 2));
 
-    public bool Equals(MathPoint other) =>
-        EqualityComparer<double>.Default.Equals(X, other.X) &&
-        EqualityComparer<double>.Default.Equals(Y, other.Y);
-
     public override bool Equals(object? obj) => obj is MathPoint other && Equals(other);
-
     public override int GetHashCode() => HashCode.Combine(X, Y);
+
+    private bool Equals(MathPoint other) => X.Equals(other.X) && Y.Equals(other.Y);
 }

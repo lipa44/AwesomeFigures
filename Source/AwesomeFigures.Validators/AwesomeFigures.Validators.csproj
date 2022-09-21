@@ -11,7 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Source\AwesomeFigures.Core\AwesomeFigures.Core.csproj" />
+      <ProjectReference Include="..\AwesomeFigures.Core\AwesomeFigures.Core.csproj" />
     </ItemGroup>
 
 </Project>

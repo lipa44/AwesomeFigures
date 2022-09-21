@@ -7,8 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Source\AwesomeFigures.Abstractions\AwesomeFigures.Abstractions.csproj" />
-      <ProjectReference Include="..\Source\AwesomeFigures.Core\AwesomeFigures.Core.csproj" />
+      <ProjectReference Include="..\AwesomeFigures.Abstractions\AwesomeFigures.Abstractions.csproj" />
+      <ProjectReference Include="..\AwesomeFigures.Core\AwesomeFigures.Core.csproj" />
     </ItemGroup>
 
 </Project>

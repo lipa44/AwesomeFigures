@@ -4,13 +4,14 @@ using AwesomeFigures.Abstractions.Visitors;
 
 namespace AwesomeFigures.Core.Angular;
 
+// Internal ctor to force using FiguresService
 public class Triangle<TPoint>
     : IPolygon<TPoint>
     where TPoint : IPoint
 {
     private readonly List<TPoint> _points;
 
-    public Triangle(List<TPoint> points)
+    internal Triangle(List<TPoint> points)
     {
         _points = points;
     }

@@ -4,11 +4,12 @@ using AwesomeFigures.Abstractions.Visitors;
 
 namespace AwesomeFigures.Core.Elliptical;
 
+// Internal ctor to force using FiguresService
 public class Circle<TPoint>
     : ICircle<TPoint>
     where TPoint : IPoint
 {
-    public Circle(double radius)
+    internal Circle(double radius)
     {
         Radius = radius;
     }

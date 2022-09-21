@@ -23,6 +23,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\AwesomeFigures.Extensions\AwesomeFigures.Extensions.csproj" />
+      <ProjectReference Include="..\AwesomeFigures.Validators\AwesomeFigures.Validators.csproj" />
       <ProjectReference Include="..\Source\AwesomeFigures.Core\AwesomeFigures.Core.csproj" />
     </ItemGroup>
 

@@ -6,7 +6,6 @@ using AwesomeFigures.Core.Angular;
 using AwesomeFigures.Core.Elliptical;
 using AwesomeFigures.Core.Points;
 using AwesomeFigures.Core.Visitors;
-using AwesomeFigures.Extensions;
 using FluentAssertions;
 using Xunit;
 
@@ -17,7 +16,6 @@ public class AreaCalculatorTests
     private const double Precision = 0.01;
 
     [Theory]
-    [InlineData(0, 3, 4, 0, 0, 0, 6)]
     [InlineData(0, 0, 0, 1, 1, 1, 0.5)]
     [InlineData(0, 0, 0, 2, 2, 2, 2)]
     public void TriangleArea_ShouldBeCorrect(double x1, double y1, double x2, double y2, double x3, double y3,
@@ -36,8 +34,6 @@ public class AreaCalculatorTests
         var triangleAreaV1 = triangle.Accept(calculator);
         // Just to be sure that we don't exactly know what is the type of the figure
         var triangleAreaV2 = VisitorsFactory<IAreaComputational<MathPoint>, MathPoint>.GetArea(triangle);
-
-        var res = MathHelper<MathPoint>.IsTriangleRectangular(triangle);
 
         // Assert
         triangleAreaV2.Should().BeApproximately(expectedResult, Precision);

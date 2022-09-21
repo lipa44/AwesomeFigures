@@ -12,11 +12,6 @@ public class Rectangle<TPoint>
 
     public Rectangle(List<TPoint> points)
     {
-        ArgumentNullException.ThrowIfNull(points);
-
-        if (points.Count != 4)
-            throw new ArgumentException($"{nameof(Rectangle<TPoint>)} must have 4 points");
-
         _points = points;
     }
 

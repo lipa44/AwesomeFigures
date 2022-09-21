@@ -10,9 +10,6 @@ public class Circle<TPoint>
 {
     public Circle(double radius)
     {
-        if (radius < 0)
-            throw new ArgumentException($"{nameof(Circle<TPoint>)}'s radius must be positive", nameof(radius));
-
         Radius = radius;
     }
 

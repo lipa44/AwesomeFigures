@@ -23,5 +23,5 @@ public class Rectangle<TPoint>
     public double Accept(IAreaCalculatorVisitor<TPoint> visitor)
         => visitor.CalculateForPolygon(this);
 
-    public IReadOnlyList<TPoint> GetPoints() => _points;
+    public IReadOnlyList<TPoint> Points => _points;
 }

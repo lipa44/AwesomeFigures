@@ -15,7 +15,7 @@ public class AreaCalculatorVisitor<TPoint>
     {
         double area = 0.0;
 
-        var points = polygon.GetPoints();
+        var points = polygon.Points;
         var j = points.Count - 1;
 
         for (var i = 0; i < points.Count; j = i, i++)

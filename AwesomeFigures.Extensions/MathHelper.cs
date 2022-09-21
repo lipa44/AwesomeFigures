@@ -8,7 +8,7 @@ public static class MathHelper<TPoint>
 {
     public static bool IsTriangleRectangular(Triangle<TPoint> triangle)
     {
-        var points = triangle.GetPoints();
+        var points = triangle.Points;
 
         var lengths = points
             .Select((cur, i) =>

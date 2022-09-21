@@ -7,5 +7,5 @@ public interface IPolygon<TPoint>
     where TPoint : IPoint
 {
     // will be better to use LinkedList<TPoint> from math POV, but... who wants to use LinkedList in math library?)
-    IReadOnlyList<TPoint> GetPoints();
+    IReadOnlyList<TPoint> Points { get; }
 }

@@ -5,8 +5,13 @@ using AwesomeFigures.Core;
 using AwesomeFigures.Core.Angular;
 using AwesomeFigures.Core.Elliptical;
 using AwesomeFigures.Core.Points;
+using AwesomeFigures.Core.Services;
 using AwesomeFigures.Core.Visitors;
+using AwesomeFigures.Validators;
 using FluentAssertions;
+using FluentValidation;
+using FluentValidation.Results;
+using Moq;
 using Xunit;
 
 namespace AwesomeFigures.UnitTests;
@@ -22,8 +27,15 @@ public class AreaCalculatorTests
         double expectedResult)
     {
         // Arrange
+        var triangleValidatorMock = new Mock<TriangleValidator<MathPoint>>();
+        triangleValidatorMock
+            .Setup(x => x.Validate(It.IsAny<ValidationContext<Triangle<MathPoint>>>()))
+            .Returns(new ValidationResult());
+
+        var figuresService = new FiguresService<MathPoint>(triangleValidatorMock.Object, null, null);
+
         var calculator = new AreaCalculatorVisitor<MathPoint>();
-        var triangle = new Triangle<MathPoint>(new List<MathPoint>
+        var triangle = figuresService.CreateTriangle(new List<MathPoint>
         {
             new MathPoint(x1, y1),
             new MathPoint(x2, y2),
@@ -46,8 +58,15 @@ public class AreaCalculatorTests
     public void CircleArea_ShouldBeCorrect(double radius, double expectedResult)
     {
         // Arrange
+        var circleValidatorMock = new Mock<CircleValidator<MathPoint>>();
+        circleValidatorMock
+            .Setup(x => x.Validate(It.IsAny<ValidationContext<Circle<MathPoint>>>()))
+            .Returns(new ValidationResult());
+
+        var figuresService = new FiguresService<MathPoint>(null, null, circleValidatorMock.Object);
+
         var calculator = new AreaCalculatorVisitor<MathPoint>();
-        var circle = new Circle<MathPoint>(radius);
+        var circle = figuresService.CreateCircle(radius);
 
         // Act
         var circleAreaV1 = circle.Accept(calculator);
@@ -66,8 +85,15 @@ public class AreaCalculatorTests
         double x4, double y4, double expectedResult)
     {
         // Arrange
+        var rectangleValidatorMock = new Mock<RectangleValidator<MathPoint>>();
+        rectangleValidatorMock
+            .Setup(x => x.Validate(It.IsAny<ValidationContext<Rectangle<MathPoint>>>()))
+            .Returns(new ValidationResult());
+
+        var figuresService = new FiguresService<MathPoint>(null, rectangleValidatorMock.Object, null);
+
         var calculator = new AreaCalculatorVisitor<MathPoint>();
-        var rectangle = new Rectangle<MathPoint>(new List<MathPoint>
+        var rectangle = figuresService.CreateRectangle(new List<MathPoint>
         {
             new MathPoint(x1, y1),
             new MathPoint(x2, y2),

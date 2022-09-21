@@ -1,6 +1,10 @@
 name: .NET build && test
 
 on:
+  push:
+    branches:
+      - master
+
   pull_request:
     branches:
       - master

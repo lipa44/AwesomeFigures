@@ -1,5 +1,4 @@
 using AwesomeFigures.Abstractions.Figures;
-using AwesomeFigures.Abstractions.Figures.General;
 using AwesomeFigures.Abstractions.Points;
 using AwesomeFigures.Abstractions.Visitors;
 

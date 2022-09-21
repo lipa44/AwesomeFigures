@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using AwesomeFigures.Abstractions.Figures;
 using AwesomeFigures.Core;
-using AwesomeFigures.Core.Angular;
-using AwesomeFigures.Core.Elliptical;
 using AwesomeFigures.Core.Points;
 using AwesomeFigures.Core.Services;
 using AwesomeFigures.Core.Visitors;
@@ -109,5 +108,58 @@ public class AreaCalculatorTests
         // Assert
         rectangleAreaV1.Should().BeApproximately(expectedResult, Precision);
         triangleAreaV2.Should().BeApproximately(rectangleAreaV1, Precision);
+    }
+
+    [Theory]
+    [InlineData(0, 0, 0, 1, 1, 1, 1, 0)] // Just some valid coordinates
+    public void Polymorphism_ShouldWork(double x1, double y1, double x2, double y2, double x3, double y3,
+        double x4, double y4)
+    {
+        // Arrange
+        var rectangleValidatorMock = new Mock<RectangleValidator<MathPoint>>();
+        var triangleValidatorMock = new Mock<TriangleValidator<MathPoint>>();
+        var circleValidatorMock = new Mock<CircleValidator<MathPoint>>();
+
+        rectangleValidatorMock
+            .Setup(x => x.Validate(It.IsAny<ValidationContext<IRectangle<MathPoint>>>()))
+            .Returns(new ValidationResult());
+
+        triangleValidatorMock
+            .Setup(x => x.Validate(It.IsAny<ValidationContext<ITriangle<MathPoint>>>()))
+            .Returns(new ValidationResult());
+
+        circleValidatorMock
+            .Setup(x => x.Validate(It.IsAny<ValidationContext<ICircle<MathPoint>>>()))
+            .Returns(new ValidationResult());
+
+        var figuresService = new FiguresService<MathPoint>(triangleValidatorMock.Object, rectangleValidatorMock.Object,
+            circleValidatorMock.Object);
+
+        var calculator = new AreaCalculatorVisitor<MathPoint>();
+        var rectangle = figuresService.CreateRectangle(new List<MathPoint>
+        {
+            new MathPoint(x1, y1),
+            new MathPoint(x2, y2),
+            new MathPoint(x3, y3),
+            new MathPoint(x4, y4),
+        });
+
+        var triangle = figuresService.CreateTriangle(new List<MathPoint>
+        {
+            new MathPoint(x1, y1),
+            new MathPoint(x2, y2),
+            new MathPoint(x3, y3),
+        });
+
+        var circle = figuresService.CreateCircle(radius: 1);
+
+        var figures = new List<IAreaComputational<MathPoint>> {rectangle, triangle, circle};
+        
+        // Act
+        var areasV1 = figures.Select(figure => figure.Accept(calculator));
+        var areasV2 = figures.Select(VisitorsFactory<IAreaComputational<MathPoint>, MathPoint>.GetArea);
+
+        // Assert
+        areasV1.Should().BeEquivalentTo(areasV2);
     }
 }

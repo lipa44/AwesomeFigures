@@ -1,3 +1,4 @@
+using AwesomeFigures.Abstractions.Figures;
 using AwesomeFigures.Abstractions.Points;
 using AwesomeFigures.Core.Angular;
 using AwesomeFigures.Core.Elliptical;
@@ -23,7 +24,7 @@ public sealed class FiguresService<TPoint>
         _circleValidator = circleValidator;
     }
 
-    public Triangle<TPoint> CreateTriangle(List<TPoint> points)
+    public ITriangle<TPoint> CreateTriangle(List<TPoint> points)
     {
         var triangle = new Triangle<TPoint>(points);
         _triangleValidator.ValidateAndThrow(triangle);
@@ -31,7 +32,7 @@ public sealed class FiguresService<TPoint>
         return triangle;
     }
 
-    public Rectangle<TPoint> CreateRectangle(List<TPoint> points)
+    public IRectangle<TPoint> CreateRectangle(List<TPoint> points)
     {
         var rectangle = new Rectangle<TPoint>(points);
         _rectangleValidator.ValidateAndThrow(rectangle);
@@ -39,7 +40,7 @@ public sealed class FiguresService<TPoint>
         return rectangle;
     }
 
-    public Circle<TPoint> CreateCircle(double radius)
+    public ICircle<TPoint> CreateCircle(double radius)
     {
         var circle = new Circle<TPoint>(radius);
         _circleValidator.ValidateAndThrow(circle);

@@ -1,6 +1,5 @@
 using AwesomeFigures.Abstractions.Figures;
 using AwesomeFigures.Abstractions.Points;
-using AwesomeFigures.Core.Elliptical;
 using AwesomeFigures.Core.Validators;
 using FluentValidation;
 using FluentValidation.Results;

@@ -1,5 +1,5 @@
-﻿using AwesomeFigures.Abstractions.Points;
-using AwesomeFigures.Core.Angular;
+﻿using AwesomeFigures.Abstractions.Figures;
+using AwesomeFigures.Abstractions.Points;
 
 namespace AwesomeFigures.Extensions;
 
@@ -8,7 +8,7 @@ public static class MathHelper<TPoint>
 {
     private const double Epsilon = 0.0001;
 
-    public static bool IsTriangleRectangular(Triangle<TPoint> triangle)
+    public static bool IsTriangleRectangular(ITriangle<TPoint> triangle)
     {
         var points = triangle.Points;
 

@@ -1,4 +1,5 @@
-﻿using AwesomeFigures.Abstractions.Points;
+﻿using AwesomeFigures.Abstractions.Figures;
+using AwesomeFigures.Abstractions.Points;
 using AwesomeFigures.Core.Angular;
 using AwesomeFigures.Core.Validators;
 using FluentValidation;
@@ -7,7 +8,7 @@ using FluentValidation.Results;
 namespace AwesomeFigures.Validators;
 
 public class TriangleValidator<TPoint>
-    : AbstractValidator<Triangle<TPoint>>,
+    : AbstractValidator<ITriangle<TPoint>>,
         ITriangleValidator<TPoint>
     where TPoint : IPoint
 {
@@ -27,7 +28,7 @@ public class TriangleValidator<TPoint>
             .When(x => x.Points.Count == 3);
     }
 
-    private bool IsTriangleCorrect(Triangle<TPoint> triangle)
+    private bool IsTriangleCorrect(ITriangle<TPoint> triangle)
     {
         var points = triangle.Points;
 
@@ -43,7 +44,7 @@ public class TriangleValidator<TPoint>
     private bool CheckValidity(double a, double b, double c)
         => !(a + b <= c) && !(a + c <= b) && !(b + c <= a);
 
-    public void ValidateAndThrow(Triangle<TPoint> triangle)
+    public void ValidateAndThrow(ITriangle<TPoint> triangle)
     {
         ValidationResult? result = Validate(triangle);
 

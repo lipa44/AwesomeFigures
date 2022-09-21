@@ -1,3 +1,4 @@
+using AwesomeFigures.Abstractions.Figures;
 using AwesomeFigures.Abstractions.Figures.General;
 using AwesomeFigures.Abstractions.Points;
 using AwesomeFigures.Abstractions.Visitors;
@@ -6,7 +7,7 @@ namespace AwesomeFigures.Core.Angular;
 
 // Internal ctor to enforce using FiguresService
 public class Rectangle<TPoint>
-    : IPolygon<TPoint>
+    : IRectangle<TPoint>
     where TPoint : IPoint
 {
     private readonly List<TPoint> _points;

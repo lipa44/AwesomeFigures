@@ -29,7 +29,7 @@ public class AreaCalculatorTests
         // Arrange
         var triangleValidatorMock = new Mock<TriangleValidator<MathPoint>>();
         triangleValidatorMock
-            .Setup(x => x.Validate(It.IsAny<ValidationContext<Triangle<MathPoint>>>()))
+            .Setup(x => x.Validate(It.IsAny<ValidationContext<ITriangle<MathPoint>>>()))
             .Returns(new ValidationResult());
 
         var figuresService = new FiguresService<MathPoint>(triangleValidatorMock.Object, null, null);
@@ -60,7 +60,7 @@ public class AreaCalculatorTests
         // Arrange
         var circleValidatorMock = new Mock<CircleValidator<MathPoint>>();
         circleValidatorMock
-            .Setup(x => x.Validate(It.IsAny<ValidationContext<Circle<MathPoint>>>()))
+            .Setup(x => x.Validate(It.IsAny<ValidationContext<ICircle<MathPoint>>>()))
             .Returns(new ValidationResult());
 
         var figuresService = new FiguresService<MathPoint>(null, null, circleValidatorMock.Object);
@@ -87,7 +87,7 @@ public class AreaCalculatorTests
         // Arrange
         var rectangleValidatorMock = new Mock<RectangleValidator<MathPoint>>();
         rectangleValidatorMock
-            .Setup(x => x.Validate(It.IsAny<ValidationContext<Rectangle<MathPoint>>>()))
+            .Setup(x => x.Validate(It.IsAny<ValidationContext<IRectangle<MathPoint>>>()))
             .Returns(new ValidationResult());
 
         var figuresService = new FiguresService<MathPoint>(null, rectangleValidatorMock.Object, null);

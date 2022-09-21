@@ -1,3 +1,4 @@
+using AwesomeFigures.Abstractions.Figures;
 using AwesomeFigures.Abstractions.Points;
 using AwesomeFigures.Core.Angular;
 using AwesomeFigures.Core.Validators;
@@ -8,7 +9,7 @@ using ValidationResult = FluentValidation.Results.ValidationResult;
 namespace AwesomeFigures.Validators;
 
 public class RectangleValidator<TPoint>
-    : AbstractValidator<Rectangle<TPoint>>,
+    : AbstractValidator<IRectangle<TPoint>>,
         IRectangleValidator<TPoint>
     where TPoint : IPoint
 {
@@ -23,7 +24,7 @@ public class RectangleValidator<TPoint>
             .WithMessage("Rectangle must have at least 3 points");
     }
 
-    public void ValidateAndThrow(Rectangle<TPoint> rectangle)
+    public void ValidateAndThrow(IRectangle<TPoint> rectangle)
     {
         ValidationResult? result = Validate(rectangle);
 
